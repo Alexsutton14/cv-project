@@ -1,0 +1,37 @@
+*{
+    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+}
+
+.App{
+    display: flex;
+    justify-content: center;
+}
+
+.app-container{
+    max-width: 600px;
+    width: 80vw;
+    margin-top: 25px;
+}
+
+form>label{
+    padding-right: 5px;
+}
+
+.form-element{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.form-element>label{
+    width: 100px;
+}
+.form-element>input{
+    flex-grow: 1;
+    height: 25px;
+}
+.form-element>span{
+    flex-grow: 1;
+    height: 25px;
+    vertical-align: center;
+}
