@@ -4,7 +4,7 @@ class Personal extends React.Component{
 
     render(){
         if (this.props.personal.locked){
-            return <div className="personal-container">
+            return <div className="personal-container container">
             <h2>Personal Details</h2>
             <form className="personal-details">
                 <div className="form-element">
@@ -23,7 +23,7 @@ class Personal extends React.Component{
             </form>
         </div>
         } else {
-            return <div className="personal-container">
+            return <div className="personal-container container">
                 <h2>Personal Details</h2>
                 <form className="personal-details">
                     <div className="form-element">

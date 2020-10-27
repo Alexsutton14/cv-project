@@ -19,8 +19,7 @@ class App extends Component {
       },
       employment:
       {
-        locked: false,
-        history: undefined
+        locked: false
       },
       education:
       {
@@ -62,6 +61,9 @@ class App extends Component {
           <Personal 
             personal={this.state.personal}
             submitPersonal={this.submitPersonal}
+          />
+          <Employment
+            locked={this.state.employment.locked}
           />
           {/* Education */}
         </div>
