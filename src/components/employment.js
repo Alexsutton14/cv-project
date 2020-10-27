@@ -5,7 +5,11 @@ class Employment extends React.Component{
     constructor(props){
         super(props);
 
-        this.state.employments = [];
+        this.state = {
+            employments: []
+        }
+        this.AddEmployer(new Date(2019, 11), undefined, true, "ITV Studios", "Camera Operator");
+        this.AddEmployer(new Date(2018, 11), new Date(2019, 9), false, "ITV Studios", "Camera Assistant");
     }
 
     AddEmployer = function(startDate, endDate, current, employerName, jobTitle, jobDescription = undefined){
@@ -27,11 +31,14 @@ class Employment extends React.Component{
     }
 
     render(){
-        return <div className="employment-container container">
-                {this.state.employments.array.forEach((element, index) => {
-                    return <Employer details={element} index={index} locked={this.props.locked} />
-                })}
+        console.log(this.state);
+        return (
+        <div className="employment-container container">
+            {this.state.employments.forEach((element) => {
+                return <Employer details={element} locked={true} />;
+            })}
         </div>
+        );
     }
 }
 

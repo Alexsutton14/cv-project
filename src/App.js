@@ -19,7 +19,7 @@ class App extends Component {
       },
       employment:
       {
-        locked: false
+        locked: true
       },
       education:
       {
