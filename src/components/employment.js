@@ -8,8 +8,8 @@ class Employment extends React.Component{
         this.state = {
             employments: []
         }
-        this.AddEmployer(new Date(2019, 11), undefined, true, "ITV Studios", "Camera Operator");
-        this.AddEmployer(new Date(2018, 11), new Date(2019, 9), false, "ITV Studios", "Camera Assistant");
+        this.AddEmployer(new Date(2019, 11, 1), undefined, true, "ITV Studios", "Camera Operator");
+        this.AddEmployer(new Date(2018, 8, 1), new Date(2019, 9), false, "ITV Studios", "Camera Assistant");
     }
 
     AddEmployer = function(startDate, endDate, current, employerName, jobTitle, jobDescription = undefined){
@@ -34,8 +34,8 @@ class Employment extends React.Component{
         console.log(this.state);
         return (
         <div className="employment-container container">
-            {this.state.employments.forEach((element) => {
-                return <Employer details={element} locked={true} />;
+            {this.state.employments.map((element, index) => {
+                return <Employer details={element} key={index} locked={true} />;
             })}
         </div>
         );
