@@ -8,8 +8,8 @@ class Employment extends React.Component{
         this.state = {
             employments: []
         }
-        this.AddEmployer("November 2019", undefined, true, "ITV Studios", "Camera Operator");
-        this.AddEmployer("August 2018", "September 2019", false, "ITV Studios", "Camera Assistant");
+        this.AddEmployer("November 2019", undefined, true, "Business Inc.", "Vice President");
+        this.AddEmployer("August 2018", "September 2019", false, "Money Corp.", "Assistant to the Vice President");
 
         this.AddBlankEmployer = this.AddBlankEmployer.bind(this);
     }
@@ -30,6 +30,11 @@ class Employment extends React.Component{
         })
     }
 
+    UpdateField = (e) => {
+        console.log(e);
+        
+    }
+
     AddBlankEmployer = () => {
         this.AddEmployer(undefined, undefined, false, undefined, undefined);
     }
@@ -47,22 +52,33 @@ class Employment extends React.Component{
     }
 
     render(){
-        console.log(this.state);
-
         let addButton;
-
         if (this.state.employments.length < 1 && !this.props.locked){
             addButton = <button onClick={this.AddBlankEmployer}>Add an employer</button>
         } else {
             addButton = <button onClick={this.AddBlankEmployer}>Add another employer</button>
         }
 
+        let lockButtonString;
+        if (this.props.locked){
+            lockButtonString = "Edit";
+        } else {
+            lockButtonString = "Save";
+        }
+
         return (
         <div className="employment-container container">
             {this.state.employments.map((element, index) => {
-                return <Employer details={element} key={index} locked={true} />;
+                return <Employer 
+                    details={element}
+                    key={index}
+                    index={index}
+                    locked={this.props.locked} 
+                    changeEvent={this.UpdateField}
+                />;
             })}
             {addButton}
+        <button onClick={this.props.submit}>{lockButtonString}</button>
         </div>
         );
     }

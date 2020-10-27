@@ -7,8 +7,6 @@ class App extends Component {
   constructor() {
     super();
 
-
-
     this.state = {
       personal: 
       {
@@ -31,7 +29,6 @@ class App extends Component {
 
   submitPersonal = (e) => {
     e.preventDefault();
-    console.log(e);
     if (this.state.personal.locked){
       this.setState({
         personal: {
@@ -54,7 +51,14 @@ class App extends Component {
     }    
   };
 
+  ToggleEmploymentLock = () =>{
+    this.setState({
+      employment:{ locked: !this.state.employment.locked }
+    });
+  }
+
   render() {
+    console.log(Object.keys(this.state.personal).length);
     return (
       <div className="App">
         <div className="app-container">
@@ -64,6 +68,7 @@ class App extends Component {
           />
           <Employment
             locked={this.state.employment.locked}
+            submit={this.ToggleEmploymentLock}
           />
           {/* Education */}
         </div>
