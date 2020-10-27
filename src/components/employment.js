@@ -8,14 +8,30 @@ class Employment extends React.Component{
         this.state = {
             employments: []
         }
-        this.AddEmployer(new Date(2019, 11, 1), undefined, true, "ITV Studios", "Camera Operator");
-        this.AddEmployer(new Date(2018, 8, 1), new Date(2019, 9), false, "ITV Studios", "Camera Assistant");
+        this.AddEmployer("November 2019", undefined, true, "ITV Studios", "Camera Operator");
+        this.AddEmployer("August 2018", "September 2019", false, "ITV Studios", "Camera Assistant");
+
+        this.AddBlankEmployer = this.AddBlankEmployer.bind(this);
     }
 
-    AddEmployer = function(startDate, endDate, current, employerName, jobTitle, jobDescription = undefined){
+    AddEmployer = (startDate, endDate, current, employerName, jobTitle, jobDescription = undefined) => {
+        if (startDate !== undefined){
+            startDate = new Date(Date.parse(startDate));
+        }
+        if (endDate !== undefined){
+            endDate = new Date(Date.parse(endDate));
+        }
+
+        let newArray = this.state.employments;
+        newArray.push(this.CreateEmployment(startDate, endDate, current, employerName, jobTitle, jobDescription));
+
         this.setState({
-            employments: this.state.employments.push(this.CreateEmployment(startDate, endDate, current, employerName, jobTitle, jobDescription))
+            employments: newArray
         })
+    }
+
+    AddBlankEmployer = () => {
+        this.AddEmployer(undefined, undefined, false, undefined, undefined);
     }
 
     CreateEmployment(startDate, endDate, current, employerName, jobTitle, jobDescription){
@@ -32,11 +48,21 @@ class Employment extends React.Component{
 
     render(){
         console.log(this.state);
+
+        let addButton;
+
+        if (this.state.employments.length < 1 && !this.props.locked){
+            addButton = <button onClick={this.AddBlankEmployer}>Add an employer</button>
+        } else {
+            addButton = <button onClick={this.AddBlankEmployer}>Add another employer</button>
+        }
+
         return (
         <div className="employment-container container">
             {this.state.employments.map((element, index) => {
                 return <Employer details={element} key={index} locked={true} />;
             })}
+            {addButton}
         </div>
         );
     }
